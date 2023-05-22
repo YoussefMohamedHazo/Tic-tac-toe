@@ -1,19 +1,19 @@
 import random
 from collections import deque
 
-# Tic Tac Toe board
+
 board = [' ' for _ in range(9)]
 
-# Winning combinations
+
 winning_combinations = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],  # Rows
     [0, 3, 6], [1, 4, 7], [2, 5, 8],  # Columns
     [0, 4, 8], [2, 4, 6]              # Diagonals
 ]
 
-# BFS algorithm for AI's move
+
 def bfs_move(board):
-    queue = deque([(board, -1)])  # Start with an initial state
+    queue = deque([(board, -1)])  
     visited = set()
 
     while queue:
@@ -30,29 +30,29 @@ def bfs_move(board):
                 if tuple(new_state) not in visited:
                     queue.append((new_state, i))
 
-# Function to check if a player has won
+
 def is_winner(board, player):
     for combo in winning_combinations:
         if all(board[i] == player for i in combo):
             return True
     return False
 
-# Function to check if the game is a draw
+
 def is_draw(board):
     return ' ' not in board
 
-# Function to check if the game is over
+
 def is_game_over(board):
     return is_winner(board, 'X') or is_winner(board, 'O') or is_draw(board)
 
-# Function to display the Tic Tac Toe board
+
 def display_board(board):
     for i in range(0, 9, 3):
         print(board[i], '|', board[i+1], '|', board[i+2])
         if i < 6:
             print('---------')
 
-# Function to get user's move
+
 def get_user_move():
     while True:
         try:
@@ -64,7 +64,7 @@ def get_user_move():
         except ValueError:
             print("Invalid input. Try again.")
 
-# Main game loop
+
 def play_game():
     print("Welcome to Tic Tac Toe!")
 
@@ -95,5 +95,5 @@ def play_game():
     else:
         print("It's a draw!")
 
-# Start the game
+
 play_game()
